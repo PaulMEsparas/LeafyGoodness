@@ -1,0 +1,15 @@
+Dependencies : 
+            npm i @react-native-async-storage/async-storage
+            npm install @react-navigation/bottom-tabs
+            npm install @react-navigation/native  
+            npm install @react-navigation/native-stack
+            npm i @stripe/stripe-react-native
+            npm install axios
+            npm i expo-font
+            npm i expo-splash-screen
+            npm i react-native-gesture-handler
+            npm i react-native-safe-area-context
+            npm i react-native-screens
+            npm i react-native-snap-carousel
+            npm i react-native-webview
+            npm install react-native-reanimated-carousel
