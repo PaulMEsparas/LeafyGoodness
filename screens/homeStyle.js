@@ -15,11 +15,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  location: {
-    fontFamily: "semiBold",
-    fontSize: SIZES.medium,
-    color: COLORS.gray,
-  },
+
   cartCount: {
     position: "absolute",
     bottom: 16,
@@ -36,6 +32,9 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     fontSize: 10,
     color: COLORS.lightWhite,
+  },
+  gradient: {
+    flexGrow: 1,
   },
 });
 

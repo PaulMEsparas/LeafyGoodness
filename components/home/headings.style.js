@@ -8,12 +8,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 12,
   },
   header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    alignItems: "center",
   },
   headerTitle: {
-    fontFamily: "semiBold",
+    fontFamily: "pfSemiBold",
     fontSize: SIZES.xLarge - 2,
+    letterSpacing: 2,
   },
 });
 

@@ -28,7 +28,11 @@ export default function ProductDetails({ navigation }) {
     <View style={styles.container}>
       <View style={styles.upperRow}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons name="chevron-back-circle" size={30} />
+          <Ionicons
+            name="chevron-back-circle"
+            color={COLORS.secondary}
+            size={30}
+          />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => {}}>
           <Ionicons name="heart" size={30} color={COLORS.primary} />

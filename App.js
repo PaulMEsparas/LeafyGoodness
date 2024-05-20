@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
+import { StatusBar } from "expo-status-bar";
 
 //Screens
 import BottomTabNavigation from "./navigation/BottomTabNavigation";
@@ -17,6 +18,9 @@ import {
   Orders,
   Register,
   WelcomeScreen,
+  Home,
+  Products,
+  Payment,
 } from "./screens";
 
 const Stack = createNativeStackNavigator();
@@ -29,6 +33,12 @@ export default function App() {
     medium: require("./assets/fonts/Poppins-Medium.ttf"),
     extraBold: require("./assets/fonts/Poppins-ExtraBold.ttf"),
     semiBold: require("./assets/fonts/Poppins-SemiBold.ttf"),
+    pfBlack: require("./assets/fonts/PlayfairDisplay-Black.ttf"),
+    pfBold: require("./assets/fonts/PlayfairDisplay-Bold.ttf"),
+    pfExtraBold: require("./assets/fonts/PlayfairDisplay-ExtraBold.ttf"),
+    pfMedium: require("./assets/fonts/PlayfairDisplay-Medium.ttf"),
+    pfRegular: require("./assets/fonts/PlayfairDisplay-Regular.ttf"),
+    pfSemiBold: require("./assets/fonts/PlayfairDisplay-SemiBold.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {
@@ -43,21 +53,16 @@ export default function App() {
 
   return (
     <NavigationContainer>
+      <StatusBar />
       <Stack.Navigator initialRouteName="WelcomeScreen">
         <Stack.Screen
-          name="Welcome"
+          name="WelcomeScreen"
           component={WelcomeScreen}
           options={{
             headerShown: false,
           }}
         />
-        <Stack.Screen
-          name="BottomNavigation"
-          component={BottomTabNavigation}
-          options={{
-            headerShown: false,
-          }}
-        />
+
         <Stack.Screen
           name="ProductDetails"
           component={ProductDetails}
@@ -76,7 +81,7 @@ export default function App() {
           name="Cart"
           component={Cart}
           options={{
-            headerShown: false,
+            headerShown: true,
           }}
         />
         <Stack.Screen
@@ -105,6 +110,34 @@ export default function App() {
           component={Register}
           options={{
             headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="BottomNavigation"
+          component={BottomTabNavigation}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Products"
+          component={Products}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Payment"
+          component={Payment}
+          options={{
+            headerShown: true,
           }}
         />
       </Stack.Navigator>

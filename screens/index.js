@@ -9,6 +9,8 @@ import Orders from "./Orders";
 import Favorites from "./Favorites";
 import Register from "./Register";
 import WelcomeScreen from "./WelcomeScreen";
+import Products from "./Products";
+import Payment from "./Payment";
 
 export {
   Home,
@@ -22,4 +24,6 @@ export {
   Favorites,
   Register,
   WelcomeScreen,
+  Products,
+  Payment,
 };

@@ -1,16 +1,36 @@
 import React, { useState } from "react";
-import { View, Image, StyleSheet, Dimensions } from "react-native";
+
+//Icons
+import { Ionicons, Fontisto } from "@expo/vector-icons";
+
+import { useNavigation } from "@react-navigation/native";
+
+import {
+  View,
+  Image,
+  StyleSheet,
+  Dimensions,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import Carousel from "react-native-reanimated-carousel";
 import { COLORS, SIZES } from "../../constants/index";
 
-const ImageCarousel = () => {
+const ImageCarousel = ({ slides, activeCategory }) => {
   const width = Dimensions.get("window").width;
 
-  const slides = [
-    require("../../assets/images/1.jpg"),
-    require("../../assets/images/2.jpg"),
-    require("../../assets/images/3.jpg"),
-  ];
+  const navigation = useNavigation();
+
+  // const filteredProducts = slides.filter(
+  //   (product) => product.category === activeCategory
+  // );
+  // const imageUrls = filteredProducts.map((product) => product.imageUrl);
+
+  // const slides = [
+  //   require("../../assets/images/Beef-Burger.jpg"),
+  //   require("../../assets/images/Garden-Salad.jpg"),
+  //   require("../../assets/images/Pork-rolls.jpg"),
+  // ];
 
   //pagination
   // const [currentIndex, setCurrentIndex] = useState(0);
@@ -21,11 +41,23 @@ const ImageCarousel = () => {
 
   return (
     <View style={styles.carouselContainer}>
+      <View style={styles.txtCon}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("Products", { slides, activeCategory })
+          }
+          style={styles.text}
+        >
+          <Text style={styles.forwardIcon}>View All</Text>
+          <Ionicons name="chevron-forward" size={22} color="black" />
+        </TouchableOpacity>
+      </View>
+
       <Carousel
         width={width}
         // pagingEnabled
         // onSnapToItem={handleSlideChange}
-        height={width / 2}
+        height={width / 1.5}
         autoPlay
         data={slides}
         scrollAnimationDuration={3000}
@@ -36,22 +68,25 @@ const ImageCarousel = () => {
         }}
         snapEnabled
         loop
-        renderItem={({ item }) => (
-          <Image source={item} style={styles.image} resizeMode="cover" />
-        )}
+        renderItem={({ item }) => {
+          if (typeof item === "string") {
+            // External image URL
+
+            return (
+              <Image
+                source={{ uri: item }}
+                style={styles.image}
+                resizeMode="cover"
+              />
+            );
+          } else {
+            // Local image
+            return (
+              <Image source={item} style={styles.image} resizeMode="cover" />
+            );
+          }
+        }}
       />
-      {/* //pagination
-      <View style={styles.paginationContainer}>
-        {slides.map((_, index) => (
-          <View
-            key={index}
-            style={[
-              styles.paginationDot,
-              index === currentIndex ? styles.activeDot : null,
-            ]}
-          />
-        ))}
-      </View> */}
     </View>
   );
 };
@@ -65,25 +100,28 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "100%",
-    borderRadius: 10,
   },
-  paginationContainer: {
+  // paginationContainer: {
+  //   flexDirection: "row",
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   color: COLORS.primary,
+  // },
+  text: {
     flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    // marginTop: 3,
+    justifyContent: "flex-end",
+    paddingHorizontal: 10,
+    paddingVertical: 5,
   },
-  //pagination
-  // paginationDot: {
-  //   width: 5,
-  //   height: 5,
-  //   borderRadius: 4,
-  //   backgroundColor: COLORS.gray,
-  //   marginHorizontal: 5,
-  // },
-  // activeDot: {
-  //   backgroundColor: COLORS.primary, // Change color for active dot
-  // },
+  forwardIcon: {
+    fontSize: SIZES.small * 1.4,
+    fontWeight: "medium",
+    marginRight: 5,
+    fontFamily: "medium",
+  },
+  txtCon: {
+    width: SIZES.width,
+  },
 });
 
 export default ImageCarousel;

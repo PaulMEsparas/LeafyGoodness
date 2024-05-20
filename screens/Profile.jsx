@@ -2,7 +2,7 @@ import { Text, View, Image, TouchableOpacity, Alert } from "react-native";
 import React, { useState, useEffect } from "react";
 
 import styles from "./profile.style.js";
-import { StatusBar } from "expo-status-bar";
+
 import { COLORS } from "../constants";
 
 //icons
@@ -94,7 +94,6 @@ const Profile = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.container}>
-        <StatusBar />
         {/* <StatusBar backgroundColor={COLORS.gray} /> */}
         <View style={{ width: "100%" }}>
           <Image

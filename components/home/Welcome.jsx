@@ -13,36 +13,11 @@ export default function Welcome() {
     <View>
       <View style={styles.container}>
         <Text style={styles.welcomeText(COLORS.black, SIZES.xSmall)}>
-          Find the Most
+          All Fresh 🥬🥗🍅
         </Text>
         <Text style={styles.welcomeText(COLORS.primary, 0)}>
-          Luxurious Furniture
+          Delectable Goodness
         </Text>
-      </View>
-
-      <View style={styles.searchContainer}>
-        <TouchableOpacity>
-          <Feather name="search" size={24} style={styles.searchIcon} />
-        </TouchableOpacity>
-        <View style={styles.searchWrapper}>
-          <TextInput
-            onPressIn={() => {
-              navigation.navigate("Search");
-            }}
-            placeholder="What are you looking for?"
-            style={styles.searchInput}
-          />
-        </View>
-
-        <View>
-          <TouchableOpacity style={styles.searchBtn}>
-            <Ionicons
-              name="camera-outline"
-              size={SIZES.xLarge}
-              color={COLORS.offwhite}
-            ></Ionicons>
-          </TouchableOpacity>
-        </View>
       </View>
     </View>
   );

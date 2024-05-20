@@ -32,7 +32,7 @@ export default function Welcome() {
         >
           <TouchableOpacity
             style={styles.entryText}
-            onPress={() => navigation.navigate("BottomNavigation")}
+            onPress={() => navigation.navigate("Home")}
           >
             <View style={styles.container}>
               <Text style={styles.welcomeText(COLORS.black)}>

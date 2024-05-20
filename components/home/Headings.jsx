@@ -6,15 +6,15 @@ import { useNavigation } from "@react-navigation/native";
 
 import { COLORS, SIZES } from "../../constants";
 
-const Headings = () => {
+const Headings = ({ text }) => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>New Arrivals</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("ProductsList")}>
+        <Text style={styles.headerTitle}>{text}</Text>
+        {/* <TouchableOpacity onPress={() => navigation.navigate("ProductsList")}>
           <Ionicons name="ios-grid" size={24} color={COLORS.primary}></Ionicons>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   );

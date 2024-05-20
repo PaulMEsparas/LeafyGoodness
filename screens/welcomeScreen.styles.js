@@ -4,8 +4,8 @@ import { COLORS, SIZES } from "../constants";
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    borderWidth: 6,
-    padding: 5,
+    borderWidth: 7,
+    padding: 7,
   },
   // welcomeText: (color, top) => ({
   //   fontFamily: "bold",
@@ -35,9 +35,6 @@ const styles = StyleSheet.create({
     color: COLORS.lightWhite,
     fontFamily: "monospace",
     letterSpacing: 3,
-  },
-  entryText: {
-    cursor: "pointer",
   },
 });
 
