@@ -1,19 +1,35 @@
 import { StyleSheet } from "react-native";
 import { COLORS, SIZES } from "../constants";
+import { Platform } from "react-native";
 
 const itemImageSize = SIZES.width * 0.2; // Adjust percentage as needed
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingVertical: 20,
   },
   gradient: {
     flex: 1,
   },
   innerContainer: {
-    height: "75%",
+    height: "70%",
     marginVertical: 30,
     marginHorizontal: 10,
+  },
+  emptyCart: {
+    height: "70%",
+
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  emptyCartIcon: {
+    transform: [{ rotate: "-10deg" }],
+    marginVertical: 20,
+  },
+  emptyCartTxt: {
+    fontFamily: "medium",
+    fontSize: 16,
   },
   item: {
     flexDirection: "row",

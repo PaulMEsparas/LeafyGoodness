@@ -7,13 +7,7 @@ const styles = StyleSheet.create({
     borderWidth: 7,
     padding: 7,
   },
-  // welcomeText: (color, top) => ({
-  //   fontFamily: "bold",
-  //   fontSize: SIZES.xxLarge - 5,
-  //   marginTop: top,
-  //   color: color,
-  //   marginHorizontal: SIZES.small,
-  // }),
+
   welcomeText: (color, space) => ({
     fontFamily: "bold",
     fontSize: SIZES.xxLarge - 5,

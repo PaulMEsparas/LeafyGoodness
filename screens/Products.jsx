@@ -35,9 +35,9 @@ const Products = ({ navigation }) => {
   //get data passed from navigation.navigate
   const route = useRoute();
   const { slides, activeCategory } = route.params;
-  console.log(slides, "slides");
-  console.log(activeCategory, "activeCategory");
-  console.log(data, "data");
+  // console.log(slides, "slides");
+  // console.log(activeCategory, "activeCategory");
+  // console.log(data, "data");
 
   const getImageSource = () => {
     switch (activeCategory) {
@@ -93,11 +93,16 @@ const Products = ({ navigation }) => {
           <Text>Something went wrong!</Text>
         ) : (
           <FlatList
-            data={data}
+            data={
+              activeCategory
+                ? data.filter((item) => item.category === activeCategory)
+                : data
+            }
             keyExtractor={(item) => item._id}
             renderItem={({ item }) => <ProductsView item={item} />}
             // horizontal
             // contentContainerStyle={{ Gap: SIZES.medium }}
+            contentContainerStyle={{ paddingBottom: 55 }}
           />
         )}
       </View>

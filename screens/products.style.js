@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
 import { COLORS, SIZES } from "../constants";
-import { height } from "deprecated-react-native-prop-types/DeprecatedImagePropType";
 
 const styles = StyleSheet.create({
   container: {

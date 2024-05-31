@@ -1,0 +1,28 @@
+{
+  "brgys": [
+    { "name": "Anislag", "shippingFee": 10.0 },
+    { "name": "Antipolo", "shippingFee": 8.0 },
+    { "name": "Apale", "shippingFee": 12.0 },
+    { "name": "Bantigue", "shippingFee": 9.0 },
+    { "name": "Benog", "shippingFee": 11.0 },
+    { "name": "Bilwang", "shippingFee": 8.5 },
+    { "name": "Can-andan", "shippingFee": 10.0 },
+    { "name": "Cangag", "shippingFee": 9.5 },
+    { "name": "Consolacion", "shippingFee": 8.0 },
+    { "name": "Honan", "shippingFee": 9.0 },
+    { "name": "Libertad", "shippingFee": 7.5 },
+    { "name": "Mahayag", "shippingFee": 11.5 },
+    { "name": "Marvel", "shippingFee": 9.0 },
+    { "name": "Matlang", "shippingFee": 10.0 },
+    { "name": "Monte Alegre", "shippingFee": 30.0 },
+    { "name": "Puting Bato", "shippingFee": 9.5 },
+    { "name": "San Francisco", "shippingFee": 7.0 },
+    { "name": "San Roque", "shippingFee": 8.5 },
+    { "name": "Santa Cruz", "shippingFee": 9.0 },
+    { "name": "Santo Niño", "shippingFee": 10.0 },
+    { "name": "Santo Rosario", "shippingFee": 8.0 },
+    { "name": "Tabunok", "shippingFee": 7.5 },
+    { "name": "Tolingon", "shippingFee": 10.5 },
+    { "name": "Tubod", "shippingFee": 11.0 }
+  ]
+}

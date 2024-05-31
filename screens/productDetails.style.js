@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { COLORS, SIZES } from "../constants";
+import { COLORS, SIZES, SHADOWS } from "../constants";
 
 const styles = StyleSheet.create({
   container: {
@@ -22,9 +22,15 @@ const styles = StyleSheet.create({
     height: "50%",
   },
   details: {
+    flex: 1,
     marginTop: -SIZES.large,
     backgroundColor: COLORS.lightWhite,
     width: SIZES.width,
+    borderTopLeftRadius: SIZES.medium,
+    borderTopRightRadius: SIZES.medium,
+  },
+  gradient: {
+    flex: 1,
     borderTopLeftRadius: SIZES.medium,
     borderTopRightRadius: SIZES.medium,
   },
@@ -42,7 +48,7 @@ const styles = StyleSheet.create({
     fontSize: SIZES.large,
   },
   priceWrapper: {
-    backgroundColor: COLORS.secondary,
+    // backgroundColor: COLORS.lightWhite,
     borderRadius: SIZES.large,
   },
   price: {
@@ -100,34 +106,39 @@ const styles = StyleSheet.create({
     paddingHorizontal: SIZES.small,
   },
   cartRow: {
-    paddingBottom: SIZES.small,
-    flexDirection: "row",
-    justifyContent: "space-between",
+    // paddingBottom: SIZES.small,
+    // flexDirection: "row",
+    // justifyContent: "space-between",
     alignItems: "center",
-    width: SIZES.width,
+    marginHorizontal: 20,
   },
   cartBtn: {
-    width: SIZES.width * 0.7,
-    backgroundColor: COLORS.black,
-    padding: SIZES.small / 2,
-    borderRadius: SIZES.large,
-    marginLeft: 12,
+    backgroundColor: COLORS.lightWhite,
+
+    paddingVertical: SIZES.small,
+    width: "100%",
+    borderRadius: SIZES.width,
+
+    ...SHADOWS.medium,
+    shadowColor: COLORS.primary,
   },
   cartTitle: {
-    color: COLORS.lightWhite,
+    color: COLORS.primary,
     fontFamily: "semiBold",
     fontSize: SIZES.medium,
-    marginLeft: SIZES.small,
+    // marginLeft: SIZES.small,
+    textAlign: "center",
+    letterSpacing: 1,
   },
-  addCart: {
-    width: 37,
-    height: 37,
-    borderRadius: 50,
-    margin: SIZES.small,
-    backgroundColor: COLORS.black,
-    alignItems: "center",
-    justifyContent: "center",
-  },
+  // addCart: {
+  //   width: 37,
+  //   height: 37,
+  //   borderRadius: 50,
+  //   margin: SIZES.small,
+  //   backgroundColor: COLORS.black,
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  // },
 });
 
 export default styles;

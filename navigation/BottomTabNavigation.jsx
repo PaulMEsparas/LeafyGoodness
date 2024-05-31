@@ -1,8 +1,13 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Home, Search, Profile } from "../screens";
+import { Products, Cart, Home } from "../screens";
+
+import { View } from "react-native";
 
 //Icons
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, Feather } from "@expo/vector-icons";
+
+//consume data passed from navigation.navigate
+import { useRoute } from "@react-navigation/native";
 
 //Colors
 import { COLORS } from "../constants/index";
@@ -10,9 +15,10 @@ import { COLORS } from "../constants/index";
 const Tab = createBottomTabNavigator();
 
 const screenOptions = {
-  tabBarShowLabel: false,
-  tabBarHideOnKeyboard: true,
+  tabBarShowLabel: true,
+  tabBarHideOnKeyboard: false,
   headerShown: false,
+  headerBackVisible: true,
   tabBarStyle: {
     position: "absolute",
     bottom: 0,
@@ -21,19 +27,31 @@ const screenOptions = {
     elevation: 0,
     height: 50,
   },
+  tabBarLabelStyle: {
+    fontSize: 12, // Adjust font size here
+    color: COLORS.primary, // Adjust font color here
+    fontFamily: "semiBold",
+  },
 };
 
 const BottomTabNavigation = () => {
+  const route = useRoute();
+  const { slides, activeCategory, initialScreen } = route.params || {};
+
   return (
-    <Tab.Navigator screenOptions={screenOptions}>
+    <Tab.Navigator
+      screenOptions={screenOptions}
+      initialRouteName={initialScreen === "Cart" ? "Cart" : "Products"}
+    >
       <Tab.Screen
-        name="Home"
-        component={Home}
+        name="Products"
+        component={Products}
+        initialParams={{ slides, activeCategory }}
         options={{
           tabBarIcon: ({ focused }) => {
             return (
               <Ionicons
-                name={focused ? "home" : "home-outline"}
+                name={focused ? "grid" : "grid-outline"}
                 size={24}
                 color={focused ? COLORS.primary : COLORS.gray2}
               />
@@ -41,30 +59,16 @@ const BottomTabNavigation = () => {
           },
         }}
       />
+
       <Tab.Screen
-        name="Search"
-        component={Search}
+        name="Cart"
+        component={Cart}
         options={{
           tabBarIcon: ({ focused }) => {
             return (
               <Ionicons
-                name={"search-sharp"}
-                size={24}
-                color={focused ? COLORS.primary : COLORS.gray2}
-              />
-            );
-          },
-        }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          tabBarIcon: ({ focused }) => {
-            return (
-              <Ionicons
-                name={focused ? "person" : "person-outline"}
-                size={24}
+                name={focused ? "cart" : "cart-outline"}
+                size={30}
                 color={focused ? COLORS.primary : COLORS.gray2}
               />
             );

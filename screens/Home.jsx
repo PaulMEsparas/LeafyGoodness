@@ -12,15 +12,19 @@ import { COLORS } from "../constants";
 
 import { useNavigation } from "@react-navigation/native";
 
+import { useSelector } from "react-redux";
+
 //components
 import { Welcome } from "../components";
 import ImageCarousel from "../components/home/ImageCarousel";
 import Headings from "../components/home/Headings";
 import ProductRow from "../components/products/ProductRow";
 import Categories from "../components/home/Catgories";
-import styles from "./homeStyle";
+import styles from "./home.style";
 
 const Home = () => {
+  const cart = useSelector((state) => state.cart.cart);
+  const [cartItems, setCartItems] = useState(cart);
   const [userData, setUserData] = useState(null);
   const [userLogin, setUserLogin] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
@@ -33,8 +37,8 @@ const Home = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    checkExistingUser();
-  }, []);
+    setCartItems(cart);
+  }, [cart]);
 
   const checkExistingUser = async () => {
     const id = await AsyncStorage.getItem("id");
@@ -59,18 +63,22 @@ const Home = () => {
           <TouchableOpacity
             onPress={() => navigation.navigate("WelcomeScreen")}
           >
-            <Ionicons
-              name="ios-grid"
-              size={24}
-              color={COLORS.primary}
-            ></Ionicons>
+            <Ionicons name="grid" size={24} color={COLORS.primary}></Ionicons>
           </TouchableOpacity>
           <View style={{ alignItems: "flex-end" }}>
-            <View style={styles.cartCount}>
-              <Text style={styles.cartNumber}>8</Text>
-            </View>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("BottomNavigation", {
+                  slides,
+                  activeCategory,
+                  initialScreen: "Cart",
+                })
+              }
+            >
               <Fontisto name="shopping-bag" size={24} />
+              <View style={styles.cartCount}>
+                <Text style={styles.cartNumber}>{cartItems.length}</Text>
+              </View>
             </TouchableOpacity>
           </View>
         </View>

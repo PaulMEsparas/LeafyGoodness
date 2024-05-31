@@ -4,9 +4,6 @@ import { COLORS, SIZES } from "../../constants";
 
 import { useNavigation } from "@react-navigation/native";
 
-//Icons
-import { Feather, Ionicons } from "@expo/vector-icons";
-
 export default function Welcome() {
   const navigation = useNavigation();
   return (

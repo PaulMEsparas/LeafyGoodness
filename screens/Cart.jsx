@@ -1,135 +1,75 @@
 import { Text, View, FlatList, TouchableOpacity, Image } from "react-native";
 
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { LinearGradient } from "expo-linear-gradient";
 
 import { useNavigation } from "@react-navigation/native";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+  incrementQuantity,
+  decrementQuantity,
+  removeFromCart,
+} from "../components/cart/CartReducer";
 
 import styles from "./cart.style";
 import { COLORS } from "../constants";
 
 const Cart = () => {
+  const cart = useSelector((state) => state.cart.cart);
+
   const navigation = useNavigation();
-  const [cartItems, setCartItems] = useState([
-    {
-      id: "1",
-      name: "Beef Burger",
-      price: 10,
-      quantity: 2,
-      image: require("../assets/images/Thumbnail/Burger.jpg"),
-    },
-    {
-      id: "2",
-      name: "Vietnamese Rolls",
-      price: 20,
-      quantity: 2,
-      image: require("../assets/images/Thumbnail/Rolls.jpg"),
-    },
-    {
-      id: "3",
-      name: "Kani Salad",
-      price: 30,
-      quantity: 3,
-      image: require("../assets/images/Thumbnail/Salads.jpg"),
-    },
-    {
-      id: "6",
-      name: "Item 6",
-      price: 10,
-      quantity: 2,
-      image: require("../assets/images/Thumbnail/Burger.jpg"),
-    },
-    {
-      id: "7",
-      name: "Item 7",
-      price: 10,
-      quantity: 2,
-      image: require("../assets/images/Thumbnail/Burger.jpg"),
-    },
-    {
-      id: "8",
-      name: "Item 8",
-      price: 10,
-      quantity: 2,
-      image: require("../assets/images/Thumbnail/Burger.jpg"),
-    },
-  ]);
-  const removeItem = (itemId) => {
-    setCartItems(cartItems.filter((item) => item.id !== itemId));
-  };
+  const [cartItems, setCartItems] = useState(cart);
+  let Total;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setCartItems(cart);
+  }, [cart]);
 
   const calculateSubtotal = (price, quantity) => {
     return price * quantity;
   };
 
   const calculateTotal = () => {
-    return cartItems.reduce(
+    const total = cartItems.reduce(
       (total, item) => total + calculateSubtotal(item.price, item.quantity),
       0
     );
+    return (Total = Number.parseFloat(total).toFixed(2));
   };
 
   const handleIncreaseQuantity = (itemId) => {
-    // Find the item in the cart based on its ID
-    const updatedCart = cartItems.map((item) => {
-      if (item.id === itemId) {
-        return {
-          ...item,
-          quantity: item.quantity + 1, // Increase quantity by 1
-        };
-      }
-      return item;
-    });
-
-    // Update the cart state with the updated cart items
-    setCartItems(updatedCart);
+    dispatch(incrementQuantity(itemId));
   };
 
   const handleDecreaseQuantity = (itemId) => {
-    let updatedCart = cartItems.map((item) => {
-      if (item.id === itemId) {
-        if (item.quantity > 1) {
-          // Decrease quantity by 1 if greater than 1
-          return {
-            ...item,
-            quantity: item.quantity - 1,
-          };
-        } else {
-          // If quantity is 1, remove the item by setting a flag
-          return {
-            ...item,
-            quantity: 0,
-          };
-        }
-      }
-      return item;
-    });
-
-    // Filter out items with quantity 0 (marked for removal)
-    updatedCart = updatedCart.filter((item) => item.quantity > 0);
-
-    // Update the cart state with the updated cart items
-    setCartItems(updatedCart);
+    dispatch(decrementQuantity(itemId));
+  };
+  const removeItem = (item) => {
+    dispatch(removeFromCart(item));
   };
 
   const renderItem = ({ item }) => (
     <View style={styles.item}>
-      <Image source={item.image} style={styles.itemImage} />
+      <Image source={{ uri: item.imageUrl }} style={styles.itemImage} />
       <View style={styles.itemDetails}>
-        <Text style={styles.itemName}>{item.name}</Text>
+        <Text style={styles.itemName}>{item.title}</Text>
         <Text style={styles.itemPrice}>
-          ${item.price} x {item.quantity}
+          ₱{item.price} x {item.quantity}
         </Text>
       </View>
       <View style={styles.quantityContainer}>
-        <TouchableOpacity onPress={() => handleIncreaseQuantity(item.id)}>
+        <TouchableOpacity onPress={() => handleIncreaseQuantity(item)}>
           <AntDesign name="plus" size={20} color={COLORS.primary} />
         </TouchableOpacity>
         <Text style={styles.itemQuantity}>{item.quantity}</Text>
-        <TouchableOpacity onPress={() => handleDecreaseQuantity(item.id)}>
+        <TouchableOpacity onPress={() => handleDecreaseQuantity(item)}>
           <AntDesign name="minus" size={20} color={COLORS.primary} />
         </TouchableOpacity>
       </View>
@@ -137,12 +77,12 @@ const Cart = () => {
       {item.quantity === 1 && (
         <TouchableOpacity
           style={styles.deleteCOn}
-          onPress={() => removeItem(item.id)}
+          onPress={() => removeItem(item)}
         >
           <AntDesign
             style={styles.deleteIcon}
             name="delete"
-            size={30}
+            size={20}
             color="red"
           />
         </TouchableOpacity>
@@ -160,19 +100,40 @@ const Cart = () => {
         end={{ x: 1, y: 1 }}
         style={styles.gradient}
       >
-        <View style={styles.innerContainer}>
-          <FlatList
-            data={cartItems}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-          />
-        </View>
+        {cartItems.length > 0 ? (
+          <View style={styles.innerContainer}>
+            <FlatList
+              data={cartItems}
+              renderItem={renderItem}
+              keyExtractor={(item) => item._id}
+            />
+          </View>
+        ) : (
+          <View style={styles.emptyCart}>
+            <View style={styles.emptyCartIcon}>
+              <MaterialCommunityIcons
+                name="cart-variant"
+                size={100}
+                color={COLORS.green}
+              />
+            </View>
+
+            <Text style={styles.emptyCartTxt}>Your Cart is Empty.</Text>
+          </View>
+        )}
 
         <View style={styles.totalContainer}>
           <Text style={styles.totalText}>Total</Text>
-          <Text style={styles.totalText}>${calculateTotal()}</Text>
+          <Text style={styles.totalText}>₱{calculateTotal()}</Text>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate("Payment")}>
+        <TouchableOpacity
+          onPress={
+            cartItems.length > 0
+              ? () => navigation.navigate("Payment", { Total })
+              : null
+          }
+          disabled={cartItems.length === 0}
+        >
           <View style={styles.payContainer}>
             <Text style={styles.payText}>Checkout</Text>
           </View>

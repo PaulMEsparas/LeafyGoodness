@@ -11,8 +11,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.lightWhite,
   },
   imageContainer: {
-    // flex: 1,
-    width: "100%",
+    flex: 1,
+
     height: SIZES.height * 0.19,
     // marginLeft: SIZES.small / 2,
     // marginTop: SIZES.small / 2,
@@ -21,25 +21,25 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   image: {
-    aspectRatio: 1,
+    width: "100%",
+    height: "100%",
     resizeMode: "cover",
-    width: "auto",
   },
   details: {
     padding: SIZES.small,
   },
   title: {
-    fontFamily: "bold",
+    fontFamily: "pfBold",
     fontSize: SIZES.large,
     marginBottom: 2,
   },
   supplier: {
-    fontFamily: "regular",
+    fontFamily: "pfBold",
     fontSize: SIZES.small,
     color: COLORS.gray,
   },
   price: {
-    fontFamily: "semiBold",
+    fontFamily: "pfBold",
     fontSize: SIZES.medium,
   },
   addBtn: {

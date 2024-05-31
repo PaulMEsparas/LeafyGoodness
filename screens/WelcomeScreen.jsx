@@ -5,6 +5,7 @@ import {
   ImageBackground,
   SafeAreaView,
 } from "react-native";
+
 import styles from "./welcomeScreen.styles";
 
 import { COLORS } from "../constants";
@@ -38,7 +39,7 @@ export default function Welcome() {
               <Text style={styles.welcomeText(COLORS.black)}>
                 Get your Leafy
               </Text>
-              <Text style={styles.welcomeText(COLORS.primary, -20)}>
+              <Text style={styles.welcomeText(COLORS.green, -20)}>
                 Goodness
               </Text>
             </View>

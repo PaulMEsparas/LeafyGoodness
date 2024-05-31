@@ -24,12 +24,12 @@ const ProductCardView = ({ item }) => {
             {item.supplier}
           </Text>
           <Text style={styles.price} numberOfLines={1}>
-            ${item.price}
+            ₱ {item.price}
           </Text>
         </View>
-        <TouchableOpacity style={styles.addBtn}>
+        {/* <TouchableOpacity style={styles.addBtn}>
           <Ionicons name="add-circle" size={32} color={COLORS.primary} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </TouchableOpacity>
   );

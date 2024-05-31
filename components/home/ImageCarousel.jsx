@@ -44,7 +44,11 @@ const ImageCarousel = ({ slides, activeCategory }) => {
       <View style={styles.txtCon}>
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate("Products", { slides, activeCategory })
+            navigation.navigate("BottomNavigation", {
+              slides,
+              activeCategory,
+              initialScreen: "Products",
+            })
           }
           style={styles.text}
         >
